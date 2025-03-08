@@ -1,19 +1,33 @@
+name: Validate terraform fmt
+on:
+  pull_request:
+    branches:
+      - main
+      - master
+
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   validate:
     runs-on: ubuntu-latest
-    name: terraform fmt and validate check
+    name: terraform fmt check
     outputs:
       CHECK_STATUS: "${{ env.CHECK_STATUS }}"
     steps:
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
+      - name: Fetch changed files
+        id: pr_files
+        uses: jitterbit/get-changed-files@v1
+        with:
+          format: "space-delimited"
       - name: Configure terraform
         uses: hashicorp/setup-terraform@v2
         with:
           terraform_version: 1.2.4
-      - name: Initialize Terraform
-        run: terraform init
-      - name: Validate terraform
-        run: terraform validate
       - name: Validate terraform fmt (added_modified)
         run: |
           set +e
