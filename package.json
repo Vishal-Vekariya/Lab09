@@ -17,8 +17,8 @@
     "url": "https://github.com/Vishal-Vekariya/Lab09/issues"
   },
   "homepage": "https://github.com/Vishal-Vekariya/Lab09#readme",
-  "description": "",
   "devDependencies": {
     "husky": "^8.0.0"
-  }
+  },
+  "description": ""
 }
