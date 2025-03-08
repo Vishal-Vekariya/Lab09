@@ -1,3 +1,8 @@
-terraform fmt -check -recursive
-terraform validate
-tflint
+# Check Terraform formatting
+echo "terraform fmt -check -recursive" > .husky/pre-commit
+
+# Validate Terraform syntax
+echo "terraform validate" >> .husky/pre-commit
+
+# Optionally, run tflint (Terraform linting)
+echo "tflint" >> .husky/pre-commit
